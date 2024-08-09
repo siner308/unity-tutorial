@@ -11,7 +11,7 @@ namespace DefaultNamespace
         
         private void Start()
         {
-            speed = 70.0f;
+            speed = 10.0f;
             time = 0;
             
             if (direction == Vector3.up)
@@ -40,8 +40,17 @@ namespace DefaultNamespace
         void DestroyBullet()
         {
             time += Time.deltaTime;
-            if (time > 0.5f)
+            if (time > 1.5f)
             {
+                Destroy(gameObject);
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collider2D)
+        {
+            if (collider2D.CompareTag("Enemy"))
+            {
+                Destroy(collider2D.gameObject);
                 Destroy(gameObject);
             }
         }

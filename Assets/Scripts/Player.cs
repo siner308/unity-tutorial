@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
 
     public void FireBullet()
     {
-        float interval = 0.1f;
+        float interval = 0.5f;
         time += Time.deltaTime; // 시간을 계속 더하다가
         Debug.Log("Fire " + time);
         if (time > interval) // 일정 시간이 지나면 미사일을 쏘고
