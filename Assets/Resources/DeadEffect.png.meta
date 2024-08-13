@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9a425e43c07803e409afe441348107eb
+guid: 8139da03eaf64d94ab07794dbbaeb59d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enemy5_0
+      name: DeadEffect_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cdbe1cfd3e1eaf48a3f472d8a5468aa
-      internalID: -1654602608
+      spriteID: d28878debc023944f81fcb4b876495b4
+      internalID: -1251088791
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy5_1
+      name: DeadEffect_1
       rect:
         serializedVersion: 2
         x: 128
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19b786baeaefc2448a5a20ad6f564957
-      internalID: -721315707
+      spriteID: b98b141c0c3d0034180b24733ead1403
+      internalID: 526181897
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy5_2
+      name: DeadEffect_2
       rect:
         serializedVersion: 2
         x: 256
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e650fa3e88a44f0499bc043484bc8888
-      internalID: -215659685
+      spriteID: 0e6f98ea115d80547899224772c9dc38
+      internalID: -767863211
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy5_3
+      name: DeadEffect_3
       rect:
         serializedVersion: 2
         x: 384
@@ -174,8 +174,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25f95ad091c3a40489897a571d458a56
-      internalID: -1714085358
+      spriteID: 2e57143ef20e76b4cb6c0b4aefb89c2a
+      internalID: 1623737079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DeadEffect_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbf265093d73fd44e9fe4715b9cb3891
+      internalID: -401699726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DeadEffect_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f67afec15a8331b4da53f54ae0d795b0
+      internalID: -271844983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DeadEffect_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d35504b2788dcb4b8f51095df85a658
+      internalID: -479712120
       vertices: []
       indices: 
       edges: []
@@ -183,7 +246,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 68e4bed9125594c47bbf2aba40520717
+    spriteID: d53e5fad0ecf41943b22f8b4af4002c8
     internalID: 0
     vertices: []
     indices: 
@@ -191,10 +254,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      enemy5_0: -1654602608
-      enemy5_1: -721315707
-      enemy5_2: -215659685
-      enemy5_3: -1714085358
+      DeadEffect_0: -1251088791
+      DeadEffect_1: 526181897
+      DeadEffect_2: -767863211
+      DeadEffect_3: 1623737079
+      DeadEffect_4: -401699726
+      DeadEffect_5: -271844983
+      DeadEffect_6: -479712120
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

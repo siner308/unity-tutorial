@@ -11,7 +11,7 @@ namespace DefaultNamespace
         
         private void Start()
         {
-            speed = 10.0f;
+            speed = 30.0f;
             time = 0;
             
             if (direction == Vector3.up)
@@ -50,7 +50,7 @@ namespace DefaultNamespace
         {
             if (collider2D.CompareTag("Enemy"))
             {
-                Destroy(collider2D.gameObject);
+                Debug.Log("Bullet hit enemy");
                 Destroy(gameObject);
             }
         }
