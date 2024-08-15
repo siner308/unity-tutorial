@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public GameObject prefabBullet;
     private float time;
     private float speed;
+    private int health = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
-        FireBullet();
+        // FireBullet();
     }
 
     public void  Move()
@@ -59,7 +60,6 @@ public class Player : MonoBehaviour
     {
         float interval = 0.3f;
         time += Time.deltaTime; // 시간을 계속 더하다가
-        Debug.Log("Fire " + time);
         if (time > interval) // 일정 시간이 지나면 미사일을 쏘고
         {
             Instantiate(prefabBullet, transform.position, Quaternion.identity);
@@ -80,6 +80,21 @@ public class Player : MonoBehaviour
         Gizmos.DrawLine(limitMin, new Vector2(limitMin.x, limitMax.y));
         Gizmos.DrawLine(limitMax, new Vector2(limitMax.x, limitMin.y));
         Gizmos.DrawLine(limitMax, new Vector2(limitMin.x, limitMax.y));
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("EnemyBullet"))
+        {
+            Debug.Log("Player hit by enemy bullet");
+            health--;
+            Debug.Log("Health: " + health);
+            if (health <= 0)
+            {
+                Debug.Log("Game Over");
+                Destroy(gameObject);
+            }
+        }
     }
 }
 

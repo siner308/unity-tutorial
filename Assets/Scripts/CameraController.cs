@@ -3,8 +3,6 @@ using UnityEngine;
 
 class Camera : MonoBehaviour
 {
-    private int _frame = 0;
-
     void LateUpdate()
     {
         // Camera follows the player
