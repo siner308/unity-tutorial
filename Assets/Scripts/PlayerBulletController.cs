@@ -50,7 +50,6 @@ namespace DefaultNamespace
         {
             if (collider2D.CompareTag("Enemy"))
             {
-                Debug.Log("Bullet hit enemy");
                 Destroy(gameObject);
             }
         }

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    Animator animator;
     private static int size = 30;
     private readonly Vector3 limitMax = new Vector3(size, size, 0);
     private readonly Vector3 limitMin = new Vector3(-size, -size, 0);
@@ -14,12 +15,17 @@ public class Player : MonoBehaviour
     private float time;
     private float speed;
     private int health = 3;
+    private bool isDead = false;
+    private float deadTime = 0.0f;
+    private static readonly int IsDeadParameter = Animator.StringToHash("isDead");
+    public bool isHit;
 
     // Start is called before the first frame update
     void Start()
     {
-        this.name = "Player";
-        this.transform.position = new Vector3(0, 0, 0);
+        name = "Player";
+        transform.position = new Vector3(0, 0, 0);
+        animator = GetComponent<Animator>();
         time = 0;
         speed = 10.0f;
     }
@@ -27,8 +33,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDead)
+        {
+            deadTime += Time.deltaTime;
+            if (!(deadTime > 1.0f)) return;
+            Destroy(gameObject);
+            return;
+        }
+
         Move();
-        // FireBullet();
+        FireBullet();
     }
 
     public void  Move()
@@ -60,17 +74,16 @@ public class Player : MonoBehaviour
     {
         float interval = 0.3f;
         time += Time.deltaTime; // 시간을 계속 더하다가
-        if (time > interval) // 일정 시간이 지나면 미사일을 쏘고
-        {
-            Instantiate(prefabBullet, transform.position, Quaternion.identity);
-            /**
-             * 시간을 초기화 한다.
-             * 0으로 만들지 않는 이유는, 시간이 0.1씩 천천히 올라가는 것이 아니기 때문에, 오차가 발생할 수 있다.
-             * Time.deltaTime은 0.01 ~ 0.02 사이의 값을 가지기 때문에, 0.3이 되지 않을 수도 있다.
-             * 0으로 만들어버리면, 총알이 덜 나갈 수 있다.
-             */
-            time -= interval;
-        }
+        if (!(time > interval)) return; // 일정 시간이 지나면 미사일을 쏘고
+        
+        Instantiate(prefabBullet, transform.position, Quaternion.identity);
+        /**
+         * 시간을 초기화 한다.
+         * 0으로 만들지 않는 이유는, 시간이 0.1씩 천천히 올라가는 것이 아니기 때문에, 오차가 발생할 수 있다.
+         * Time.deltaTime은 0.01 ~ 0.02 사이의 값을 가지기 때문에, 0.3이 되지 않을 수도 있다.
+         * 0으로 만들어버리면, 총알이 덜 나갈 수 있다.
+         */
+        time -= interval;
     }
 
     private void OnDrawGizmos()
@@ -84,17 +97,16 @@ public class Player : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("EnemyBullet"))
-        {
-            Debug.Log("Player hit by enemy bullet");
-            health--;
-            Debug.Log("Health: " + health);
-            if (health <= 0)
-            {
-                Debug.Log("Game Over");
-                Destroy(gameObject);
-            }
-        }
+        if (!other.CompareTag("EnemyBullet")) return;
+        isHit = true;
+        health--;
+        Debug.Log("Health: " + health);
+        
+        if (health > 0) return;
+        
+        Debug.Log("Game Over");
+        animator.SetBool(IsDeadParameter, true);
+        isDead = true;
     }
 }
 
