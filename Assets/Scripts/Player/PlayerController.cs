@@ -1,6 +1,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private readonly Vector3 limitMin = new Vector3(-size, -size, 0);
 
     public GameObject[] prefabBullets;
+    public GameObject prefabBoom;
     PlayerController playerController;
     public int health = 3;
     public bool isHit;
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private bool isDead = false;
     private float deadTime = 0.0f;
     private static readonly int IsDeadParameter = Animator.StringToHash("isDead");
+    private float boomPositionYFromBelowTheScene = -30.0f; 
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +35,7 @@ public class PlayerController : MonoBehaviour
         time = 0;
         speed = 20.0f;
         damage = 1;
-        boomCount = 0;
+        boomCount = 3;
     }
 
     // Update is called once per frame
@@ -47,7 +50,11 @@ public class PlayerController : MonoBehaviour
         }
 
         Move();
-        FireBullet();
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            FireBullet();
+        }
         
         if (Input.GetKeyDown(KeyCode.Z) && boomCount > 0)
         {
@@ -125,18 +132,9 @@ public class PlayerController : MonoBehaviour
     private void FireBoom()
     {
         boomCount--;
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy").Concat(GameObject.FindGameObjectsWithTag("ItemDropEnemy")).ToArray();
         Debug.Log("BOOM!!!");
-        foreach (var enemy in enemies)
-        {
-            enemy.GetComponent<EnemyController>().KilledByBoom();
-        }
-        
-        GameObject[] enemyBullets = GameObject.FindGameObjectsWithTag("EnemyBullet");
-        foreach (var enemyBullet in enemyBullets)
-        {
-            Destroy(enemyBullet);
-        }
+        Vector3 boomPosition = new Vector3(transform.position.x, boomPositionYFromBelowTheScene, transform.position.z);
+        Instantiate(prefabBoom, boomPosition, Quaternion.identity);
     }
 }
 

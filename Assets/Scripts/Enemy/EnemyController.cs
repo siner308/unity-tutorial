@@ -98,6 +98,12 @@ public class EnemyController : MonoBehaviour
             }
         }
         
+        if (other.CompareTag("Explosion"))
+        {
+            Debug.Log("Enemy is hit by " + other.tag);
+            SetDead();
+        }
+        
         
         if (other.CompareTag("BlockCollider"))
         {
@@ -117,10 +123,5 @@ public class EnemyController : MonoBehaviour
     private void Disappear()
     {
         Destroy(gameObject);
-    }
-
-    public void KilledByBoom()
-    {
-        SetDead();
     }
 }

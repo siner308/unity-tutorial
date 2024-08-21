@@ -1253,6 +1253,7 @@ MonoBehaviour:
   - {fileID: 4640007527072698976, guid: 566f8c65aa13fca42aae01125ca80dea, type: 3}
   - {fileID: 2544720452134528480, guid: 73e26ddb714e76b4fab06ac7d19d89f2, type: 3}
   - {fileID: 8193499197546658262, guid: 2e8e3318c01c1324893eeb15616910ce, type: 3}
+  prefabBoom: {fileID: 7588533314124150810, guid: 34f58afff871cb946ac3a040bf6a5430, type: 3}
   health: 3
   isHit: 0
   damage: 0

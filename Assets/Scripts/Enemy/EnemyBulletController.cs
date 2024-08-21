@@ -53,8 +53,9 @@ public class EnemyBulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Boom") || other.CompareTag("Explosion"))
         {
+            Debug.Log("Bullet is hit by " + other.tag);
             Destroy(gameObject);
         }
     }

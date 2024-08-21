@@ -12,6 +12,7 @@ TagManager:
   - Item
   - BoomCount
   - Explosion
+  - Boom
   layers:
   - Default
   - TransparentFX
