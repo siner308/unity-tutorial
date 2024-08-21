@@ -17,11 +17,10 @@ class Camera : MonoBehaviour
         // }
         
         // Camera shake effect
-        if (player && player.GetComponent<Player>().isHit)
+        if (player && player.GetComponent<PlayerController>().isHit)
         {
-            Debug.Log("Camera shake");
             Shake();
-            player.GetComponent<Player>().isHit = false;
+            player.GetComponent<PlayerController>().isHit = false;
         }
     }
     
@@ -34,19 +33,15 @@ class Camera : MonoBehaviour
     {
         float shakeDuration = 0.5f;
         float shakeMagnitude = 1f;
-        float dampingSpeed = 1.0f;
-        float shakeSpeed = 0.1f;
         float shakeTime = 0;
         
         Vector3 initialPosition = transform.position;
         float startTime = Time.time;
         
-        Debug.Log("shaking at " + startTime + " for " + shakeDuration);
         while (true)
         {
             if (Time.time > startTime + shakeDuration)
             {
-                Debug.Log("done shaking");
                 transform.position = initialPosition;
                 break;
             }
@@ -54,7 +49,6 @@ class Camera : MonoBehaviour
             // log 10번 흔들릴 때 마다 찍기
             if (shakeTime > 0.1f)
             {
-                Debug.Log("shaking at " + Time.time + " for " + shakeDuration);
                 shakeTime -= 0.1f;
             }
             

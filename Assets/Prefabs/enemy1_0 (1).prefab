@@ -12,12 +12,11 @@ GameObject:
   - component: {fileID: 3839618885957097124}
   - component: {fileID: 716369688059801919}
   - component: {fileID: 7896485197501474771}
-  - component: {fileID: 2465535719298099804}
   - component: {fileID: 4251539323629642481}
   - component: {fileID: 2674602558581803054}
   m_Layer: 0
   m_Name: enemy1_0 (1)
-  m_TagString: Enemy
+  m_TagString: ItemDropEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,52 +125,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBullet: {fileID: 8721319183594521642, guid: 53e73d5895beeda419a2b38d566a5f71, type: 3}
---- !u!61 &2465535719298099804
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 894862962866646440}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
-    newSize: {x: 4, y: 4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 4, y: 4}
-  m_EdgeRadius: 0
+  items:
+  - {fileID: 8076825759035571734, guid: 91545140cc2a0204ea0456814aff984f, type: 3}
+  - {fileID: 2992172253793617893, guid: cc18a78978a8c0e40a8edebaf3a44cbd, type: 3}
 --- !u!70 &4251539323629642481
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

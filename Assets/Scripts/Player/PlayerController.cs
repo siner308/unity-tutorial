@@ -1,33 +1,38 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using DefaultNamespace;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     Animator animator;
     private static int size = 30;
     private readonly Vector3 limitMax = new Vector3(size, size, 0);
     private readonly Vector3 limitMin = new Vector3(-size, -size, 0);
 
-    public GameObject prefabBullet;
+    public GameObject[] prefabBullets;
+    PlayerController playerController;
+    public int health = 3;
+    public bool isHit;
+    public int damage;
+    public int boomCount;
+    
     private float time;
     private float speed;
-    private int health = 3;
     private bool isDead = false;
     private float deadTime = 0.0f;
     private static readonly int IsDeadParameter = Animator.StringToHash("isDead");
-    public bool isHit;
 
     // Start is called before the first frame update
     void Start()
     {
         name = "Player";
         transform.position = new Vector3(0, 0, 0);
+        playerController = GetComponent<PlayerController>();
         animator = GetComponent<Animator>();
         time = 0;
-        speed = 10.0f;
+        speed = 20.0f;
+        damage = 1;
+        boomCount = 0;
     }
 
     // Update is called once per frame
@@ -43,6 +48,14 @@ public class Player : MonoBehaviour
 
         Move();
         FireBullet();
+        
+        if (Input.GetKeyDown(KeyCode.Z) && boomCount > 0)
+        {
+            FireBoom();
+            Debug.Log("boomCount: " + boomCount);
+    
+            UIController.Instance.UpdateBoomCount();
+        }
     }
 
     public void  Move()
@@ -76,7 +89,7 @@ public class Player : MonoBehaviour
         time += Time.deltaTime; // 시간을 계속 더하다가
         if (!(time > interval)) return; // 일정 시간이 지나면 미사일을 쏘고
         
-        Instantiate(prefabBullet, transform.position, Quaternion.identity);
+        Instantiate(prefabBullets[playerController.damage - 1], transform.position, Quaternion.identity);
         /**
          * 시간을 초기화 한다.
          * 0으로 만들지 않는 이유는, 시간이 0.1씩 천천히 올라가는 것이 아니기 때문에, 오차가 발생할 수 있다.
@@ -107,6 +120,23 @@ public class Player : MonoBehaviour
         Debug.Log("Game Over");
         animator.SetBool(IsDeadParameter, true);
         isDead = true;
+    }
+    
+    private void FireBoom()
+    {
+        boomCount--;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy").Concat(GameObject.FindGameObjectsWithTag("ItemDropEnemy")).ToArray();
+        Debug.Log("BOOM!!!");
+        foreach (var enemy in enemies)
+        {
+            enemy.GetComponent<EnemyController>().KilledByBoom();
+        }
+        
+        GameObject[] enemyBullets = GameObject.FindGameObjectsWithTag("EnemyBullet");
+        foreach (var enemyBullet in enemyBullets)
+        {
+            Destroy(enemyBullet);
+        }
     }
 }
 

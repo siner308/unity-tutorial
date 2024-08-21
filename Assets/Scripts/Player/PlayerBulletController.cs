@@ -48,7 +48,7 @@ namespace DefaultNamespace
 
         private void OnTriggerEnter2D(Collider2D collider2D)
         {
-            if (collider2D.CompareTag("Enemy"))
+            if (collider2D.CompareTag("Enemy") || collider2D.CompareTag("ItemDropEnemy"))
             {
                 Destroy(gameObject);
             }

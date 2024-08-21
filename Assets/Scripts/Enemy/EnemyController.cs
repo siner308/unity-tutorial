@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 public class EnemyController : MonoBehaviour
 {
     Animator animator;
+    PlayerController playerController;
     public GameObject enemyBullet;
     private GameObject player;
     private bool isDead = false;
@@ -18,13 +19,25 @@ public class EnemyController : MonoBehaviour
 
     private float fireDelay;
     private static readonly int IsDead = Animator.StringToHash("isDead");
+    private int hp;
+
+    public GameObject[] items;
 
     // Start is called before the first frame update
     private void Start()
     {
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
         rg2D = GetComponent<Rigidbody2D>();
+        if (gameObject.CompareTag("ItemDropEnemy"))
+        {
+            hp = 3;
+        }
+        else
+        {
+            hp = 1;
+        }
         Move();
     }
 
@@ -32,12 +45,11 @@ public class EnemyController : MonoBehaviour
     {
         if (player == null)
         {
-            Debug.Log("there is no player");
             return;
         }
         Vector3 distance = player.transform.position - transform.position;
         Vector3 direction = distance.normalized;
-        moveSpeed = Random.Range(5.0f, 7.0f);
+        moveSpeed = Random.Range(15.0f, 17.0f);
         rg2D.velocity = direction * moveSpeed;
     }
 
@@ -65,6 +77,10 @@ public class EnemyController : MonoBehaviour
             deadTime += Time.deltaTime;
             if (!(deadTime > 1.0f)) return;
             Destroy(gameObject);
+            if (gameObject.CompareTag("ItemDropEnemy"))
+            {
+                Instantiate(items[Random.Range(0, items.Length)], transform.position, Quaternion.identity);
+            }
             return;
         }
         
@@ -73,10 +89,38 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Bullet")) return;
+        if (other.CompareTag("Bullet"))
+        {
+            hp -= playerController.damage;
+            if (hp <= 0)
+            {
+                SetDead();
+            }
+        }
         
+        
+        if (other.CompareTag("BlockCollider"))
+        {
+            
+            Disappear();
+        }
+    }
+
+    private void SetDead()
+    {
         // Destroy the Enemy
         animator.SetBool(IsDead, true);
         isDead = true;
+        rg2D.velocity = Vector2.zero;
+    }
+
+    private void Disappear()
+    {
+        Destroy(gameObject);
+    }
+
+    public void KilledByBoom()
+    {
+        SetDead();
     }
 }
