@@ -1,10 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Random = UnityEngine.Random;
 public class EnemyController : MonoBehaviour
 {
@@ -20,6 +14,8 @@ public class EnemyController : MonoBehaviour
     private float fireDelay;
     private static readonly int IsDead = Animator.StringToHash("isDead");
     private int hp;
+
+    private int score;
 
     public GameObject[] items;
 
@@ -38,6 +34,8 @@ public class EnemyController : MonoBehaviour
         {
             hp = 1;
         }
+
+        score = 100;
         Move();
     }
 
@@ -118,6 +116,7 @@ public class EnemyController : MonoBehaviour
         animator.SetBool(IsDead, true);
         isDead = true;
         rg2D.velocity = Vector2.zero;
+        UIController.Instance.AddScore(score);
     }
 
     private void Disappear()

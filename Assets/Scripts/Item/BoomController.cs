@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class BoomController : ItemController
@@ -13,6 +10,7 @@ public class BoomController : ItemController
             playerController.boomCount++;
             Debug.Log("boomCount: " + playerController.boomCount);
             UIController.Instance.UpdateBoomCount();
+            UIController.Instance.AddScore(score);
         }
     }
 }

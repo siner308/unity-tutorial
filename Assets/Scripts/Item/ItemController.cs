@@ -8,6 +8,7 @@ public class ItemController : MonoBehaviour
     protected GameObject player;
     protected float speed;
     protected PlayerController playerController;
+    protected int score;
     
     
     // Start is called before the first frame update
@@ -16,6 +17,7 @@ public class ItemController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
         speed = 10.0f;
+        score = 100;
     }
 
     // Update is called once per frame

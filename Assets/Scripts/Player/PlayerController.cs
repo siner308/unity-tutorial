@@ -1,7 +1,4 @@
-using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -29,13 +26,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         name = "Player";
-        transform.position = new Vector3(0, 0, 0);
         playerController = GetComponent<PlayerController>();
         animator = GetComponent<Animator>();
-        time = 0;
-        speed = 20.0f;
-        damage = 1;
-        boomCount = 3;
     }
 
     // Update is called once per frame
@@ -63,6 +55,17 @@ public class PlayerController : MonoBehaviour
     
             UIController.Instance.UpdateBoomCount();
         }
+    }
+
+    public void Reset()
+    {
+        time = 0;
+        speed = 20.0f;
+        damage = 1;
+        boomCount = 3;
+        UIController.Instance.UpdateBoomCount();
+        transform.position = new Vector3(0, 0, 0);
+        isDead = false;
     }
 
     public void  Move()
@@ -127,6 +130,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Game Over");
         animator.SetBool(IsDeadParameter, true);
         isDead = true;
+        GameManager.Instance.GameOver();
     }
     
     private void FireBoom()

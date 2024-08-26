@@ -11,6 +11,7 @@ public class PowerUpController : ItemController
         {
             playerController.damage++;
             Debug.Log("damage: " + playerController.damage);
+            UIController.Instance.AddScore(score);
         }
     }
 }

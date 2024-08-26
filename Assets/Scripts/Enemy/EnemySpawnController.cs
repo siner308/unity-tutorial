@@ -28,8 +28,7 @@ public class EnemySpawnController : MonoBehaviour
         respawnTime = 4.0f;
         enemyCount = 5;
         randomCount = new int[enemyCount];
-        wave = 0;
-        player = GameObject.FindGameObjectWithTag("Player");
+        wave = 0;;
     }
 
     // Update is called once per frame
@@ -60,7 +59,7 @@ public class EnemySpawnController : MonoBehaviour
     
     void EnemyCreate()
     {
-        if (player == null) return;
+        if (GameObject.FindGameObjectWithTag("Player") == null) return;
         for (int i = 0; i < enemyCount; i++)
         {
             var enemy = Instantiate(enemyGameObject[Random.Range(0, enemyGameObject.Length)]) as GameObject;
