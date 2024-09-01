@@ -73,12 +73,13 @@ public class EnemyController : MonoBehaviour
         if (isDead)
         {
             deadTime += Time.deltaTime;
-            if (!(deadTime > 1.0f)) return;
-            Destroy(gameObject);
             if (gameObject.CompareTag("ItemDropEnemy"))
             {
                 Instantiate(items[Random.Range(0, items.Length)], transform.position, Quaternion.identity);
             }
+            gameObject.tag = "Untagged";
+            if (!(deadTime > 1.0f)) return;
+            Destroy(gameObject);
             return;
         }
         

@@ -204,6 +204,7 @@ MonoBehaviour:
   LAttackPos: {fileID: 5678167056316339913}
   RAttackPos: {fileID: 3903390067900553833}
   bossBullet: {fileID: 2591141183986716525, guid: ba97f2cd484cf134bb6e31adec5264cc, type: 3}
+  spriteRenderer: {fileID: 4583871957865658860}
 --- !u!1 &2879082583727376954
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,8 +21,8 @@ namespace DefaultNamespace
                 GameObject bullet2 = Instantiate(gameObject, new Vector3(transform.position.x - 1, transform.position.y, transform.position.z), Quaternion.identity);
                 
                 // set the direction of the new bullets
-                bullet1.GetComponent<BulletController>().direction = new Vector3(0.5f, 1, 0);
-                bullet2.GetComponent<BulletController>().direction = new Vector3(-0.5f, 1, 0);
+                bullet1.GetComponent<BulletController>().direction = new Vector3(0.25f, 1, 0);
+                bullet2.GetComponent<BulletController>().direction = new Vector3(-0.25f, 1, 0);
             }
         }
 
