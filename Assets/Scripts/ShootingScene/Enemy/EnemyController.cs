@@ -116,7 +116,7 @@ public class EnemyController : MonoBehaviour
         animator.SetBool(IsDead, true);
         isDead = true;
         rg2D.velocity = Vector2.zero;
-        UIController.Instance.AddScore(score);
+        UIController.instance.AddScore(score);
         SoundManager.instance.enemyDeadSound.Play();
     }
 

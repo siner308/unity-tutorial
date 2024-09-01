@@ -125,7 +125,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBullet: {fileID: 8721319183594521642, guid: 53e73d5895beeda419a2b38d566a5f71, type: 3}
-  items: []
+  items:
+  - {fileID: 2992172253793617893, guid: cc18a78978a8c0e40a8edebaf3a44cbd, type: 3}
+  - {fileID: 8076825759035571734, guid: 91545140cc2a0204ea0456814aff984f, type: 3}
 --- !u!70 &6209564645709856530
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

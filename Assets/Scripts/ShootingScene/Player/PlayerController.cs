@@ -3,9 +3,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Animator animator;
-    private static int size = 30;
-    private readonly Vector3 limitMax = new Vector3(size, size, 0);
-    private readonly Vector3 limitMin = new Vector3(-size, -size, 0);
+    private static int sizeX = 10;
+    private static int sizeY = 20;
+    private readonly Vector3 limitMax = new Vector3(sizeX, sizeY, 0);
+    private readonly Vector3 limitMin = new Vector3(-sizeX, -sizeY, 0);
 
     public GameObject[] prefabBullets;
     public GameObject prefabBoom;
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public int health = 3;
     public bool isHit;
     public int damage;
+    public int boomDamage;
     public int boomCount;
     
     private float time;
@@ -53,7 +55,7 @@ public class PlayerController : MonoBehaviour
             FireBoom();
             Debug.Log("boomCount: " + boomCount);
     
-            UIController.Instance.UpdateBoomCount();
+            UIController.instance.UpdateBoomCount();
         }
     }
 
@@ -62,8 +64,9 @@ public class PlayerController : MonoBehaviour
         time = 0;
         speed = 20.0f;
         damage = 1;
+        boomDamage = 30;
         boomCount = 3;
-        UIController.Instance.UpdateBoomCount();
+        UIController.instance.UpdateBoomCount();
         transform.position = new Vector3(0, 0, 0);
         isDead = false;
     }
@@ -130,7 +133,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Game Over");
         animator.SetBool(IsDeadParameter, true);
         isDead = true;
-        GameManager.Instance.GameOver();
+        GameManager.instance.GameOver();
         SoundManager.instance.playerDeadSound.Play();
     }
     

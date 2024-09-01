@@ -21,6 +21,9 @@ public class EnemySpawnController : MonoBehaviour
 
     private GameObject player;
 
+    private bool bossCreate;
+    public GameObject bossGameObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,12 +32,31 @@ public class EnemySpawnController : MonoBehaviour
         enemyCount = 5;
         randomCount = new int[enemyCount];
         wave = 0;;
+        bossCreate = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         Timer();
+
+        if (wave >= 5 && bossCreate == false)
+        {
+            createBoss();
+        }
+    }
+
+    private void createBoss()
+    {
+        bossCreate = true;
+        GameObject tmp = GameObject.Instantiate(bossGameObject);
+        int randomCount = Random.Range(0, 9);
+        tmp.transform.position = enemySpawns[randomCount].position;
+        BossController bossController = tmp.GetComponent<BossController>();
+        UIController.instance.isBossSpawn = true;
+        UIController.instance.MaxHpFirst = bossController.hpFirst;
+        UIController.instance.MaxHpSecond = bossController.hpSecond;
+        UIController.instance.bossController = bossController;
     }
 
     void Timer()

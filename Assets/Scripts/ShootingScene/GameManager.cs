@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     public Text restartButton;
     public Text gameOverText;
 
-    private static GameManager instance;
+    public static GameManager instance;
+    public bool isGameOver;
 
     void Awake()
     {
@@ -45,22 +46,10 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    public static GameManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new GameManager();
-            }
-            return instance;
-        }
-    }
-    
     public void GameOver()
     {
-        gameOverText.gameObject.SetActive(true);
-        restartButton.gameObject.SetActive(true);
+        UIController.instance.GameOver();
+        isGameOver = true;
     }
     
     public void RestartGame()
@@ -97,6 +86,7 @@ public class GameManager : MonoBehaviour
         GameObject player = Instantiate(playerPrefab);
         playerController = player.GetComponent<PlayerController>();
         playerController.Reset();
-        UIController.Instance.ResetScore();
+        UIController.instance.ResetScore();
+        isGameOver = false;
     }
 }

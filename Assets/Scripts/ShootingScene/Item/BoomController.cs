@@ -9,8 +9,8 @@ public class BoomController : ItemController
         {
             playerController.boomCount++;
             Debug.Log("boomCount: " + playerController.boomCount);
-            UIController.Instance.UpdateBoomCount();
-            UIController.Instance.AddScore(score);
+            UIController.instance.UpdateBoomCount();
+            UIController.instance.AddScore(score);
         }
     }
 }

@@ -35,7 +35,7 @@ class Camera : MonoBehaviour
         float shakeMagnitude = 1f;
         float shakeTime = 0;
         
-        Vector3 initialPosition = transform.position;
+        Vector3 initialPosition = new Vector3(0, 0, -10);
         float startTime = Time.time;
         
         while (true)
@@ -59,5 +59,7 @@ class Camera : MonoBehaviour
             transform.position = new Vector3(x, y, initialPosition.z);
             yield return null;
         }
+        
+        transform.position = initialPosition;
     }
 }
